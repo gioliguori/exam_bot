@@ -268,24 +268,19 @@ Grazie per aver usato il Bot UNINA! 🤖
                 time.sleep(60)  # Aspetta 1 minuto prima di riprovare
 
 def main():
-    """🎯 Configurazione e avvio del bot"""
+    """🎯 Configurazione e avvio del bot da variabili d'ambiente"""
     
     print("🤖 Bot Telegram per Esami UNINA")
     print("=" * 40)
     
-    # Configurazione - MODIFICA QUESTI VALORI!
-    BOT_TOKEN = "8013135388:AAHRhZwhyIZkadkqq8xhXb7dQ7SzUTalMBE"  # Token del tuo bot Telegram
-    CHAT_ID = "263397802"      # Il tuo chat ID
+    # Ottieni token e chat_id da variabili ambiente (Railway)
+    BOT_TOKEN = os.environ.get("BOT_TOKEN")
+    CHAT_ID = os.environ.get("CHAT_ID")
     
     # Verifica configurazione
-    if BOT_TOKEN == "8013135388:AAHRhZwhyIZkadkqq8xhXb7dQ7SzUTalMBE" or CHAT_ID == "263397802":
-        print("❌ ERRORE: Devi configurare BOT_TOKEN e CHAT_ID!")
-        print("\n📋 ISTRUZIONI SETUP:")
-        print("1. Crea bot con @BotFather su Telegram")
-        print("2. Ottieni il token e inseriscilo in BOT_TOKEN")
-        print("3. Trova il tuo Chat ID con @userinfobot")
-        print("4. Inserisci il Chat ID in CHAT_ID")
-        print("5. Riavvia il bot")
+    if not BOT_TOKEN or not CHAT_ID:
+        print("❌ ERRORE: BOT_TOKEN o CHAT_ID non sono definiti nelle variabili d'ambiente!")
+        print("\n✅ Assicurati di averle impostate correttamente su Railway.")
         return
     
     # Crea e avvia il bot
